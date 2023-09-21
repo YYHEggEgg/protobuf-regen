@@ -1,0 +1,5 @@
+/.vs
+/.vscode
+/ProtobufRegen/bin
+/ProtobufRegen/obj
+/ProtobufRegen/logs

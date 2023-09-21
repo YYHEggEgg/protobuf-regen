@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EggEgg.CSharp-Logger" Version="3.8.59-beta" />
+    <PackageReference Include="Google.Protobuf" Version="3.24.3" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="_protoc_test/**" />
+    <Compile Remove="ProtoFieldNameAnalyze/**" />
+    <Compile Remove="Proto2json_Output/**" />
+    <Compile Remove="proto2json/**" />
+  </ItemGroup>
+
+</Project>
