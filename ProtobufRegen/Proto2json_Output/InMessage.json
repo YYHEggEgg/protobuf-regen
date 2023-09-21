@@ -1,0 +1,119 @@
+{
+  "Syntax": {
+    "ProtobufVersion": "proto3",
+    "ProtobufVersionQuote": "\"proto3\"",
+    "Comments": null,
+    "InlineComment": null,
+    "Meta": {
+      "Pos": {
+        "Filename": "",
+        "Offset": 0,
+        "Line": 1,
+        "Column": 1
+      },
+      "LastPos": {
+        "Filename": "",
+        "Offset": 17,
+        "Line": 1,
+        "Column": 18
+      }
+    }
+  },
+  "ProtoBody": [
+    {
+      "OptionName": "csharp_namespace",
+      "Constant": "\"NewProtos\"",
+      "Comments": null,
+      "InlineComment": null,
+      "Meta": {
+        "Pos": {
+          "Filename": "",
+          "Offset": 19,
+          "Line": 2,
+          "Column": 1
+        },
+        "LastPos": {
+          "Filename": "",
+          "Offset": 56,
+          "Line": 2,
+          "Column": 38
+        }
+      }
+    },
+    {
+      "MessageName": "InMessage",
+      "MessageBody": [
+        {
+          "IsRepeated": false,
+          "IsRequired": false,
+          "IsOptional": false,
+          "Type": "string",
+          "FieldName": "in_str",
+          "FieldNumber": "1",
+          "FieldOptions": null,
+          "Comments": null,
+          "InlineComment": null,
+          "Meta": {
+            "Pos": {
+              "Filename": "",
+              "Offset": 83,
+              "Line": 5,
+              "Column": 5
+            },
+            "LastPos": {
+              "Filename": "",
+              "Offset": 0,
+              "Line": 0,
+              "Column": 0
+            }
+          }
+        },
+        {
+          "IsRepeated": false,
+          "IsRequired": false,
+          "IsOptional": false,
+          "Type": "uint32",
+          "FieldName": "code",
+          "FieldNumber": "2",
+          "FieldOptions": null,
+          "Comments": null,
+          "InlineComment": null,
+          "Meta": {
+            "Pos": {
+              "Filename": "",
+              "Offset": 106,
+              "Line": 6,
+              "Column": 5
+            },
+            "LastPos": {
+              "Filename": "",
+              "Offset": 0,
+              "Line": 0,
+              "Column": 0
+            }
+          }
+        }
+      ],
+      "Comments": null,
+      "InlineComment": null,
+      "InlineCommentBehindLeftCurly": null,
+      "Meta": {
+        "Pos": {
+          "Filename": "",
+          "Offset": 59,
+          "Line": 4,
+          "Column": 1
+        },
+        "LastPos": {
+          "Filename": "",
+          "Offset": 123,
+          "Line": 7,
+          "Column": 1
+        }
+      }
+    }
+  ],
+  "Meta": {
+    "Filename": ""
+  }
+}

@@ -1,0 +1,42 @@
+// mihomo-protos - Public protocol APIs for miHomo software, open-sourced for compatibility.
+// Copyright (c) 2023 YYHEggEgg
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+syntax = "proto3";
+
+package MiHomo.Protos; // 占位符，请替换
+
+message ExampleProto
+{
+    ExampleEnum eg_enum = 1;
+    string eg_str = 2;
+    uint32 UnkExample_FNSDOAGFD = 153;
+    repeated InMessage UnkExample_NSKLDVKVC = 134;
+
+    map<string, ExampleProto2> eg_proto2 = 4;
+
+    oneof eg_onefield
+    {
+        ExampleEnum a_enum = 0;
+        uint32 not_a_enum = 0;
+    }
+
+
+}
+
+import "ExampleEnum.proto";
+import "ExampleProto2.proto";
+import "InMessage.proto";
+
