@@ -27,7 +27,7 @@ Log.Info($"请输入 protobuf 路径：");
 string path = Console.ReadLine();
 
 Log.Info($"复制文件到 ./GenProtos ...");
-Directory.CreateDirectory("./GenProtos");
+try { Directory.Delete("./GenProtos", true); } catch {  }
 CopyDir(path, "./GenProtos");
 
 string workingdir = Environment.CurrentDirectory;
@@ -109,6 +109,7 @@ Log.Info($"proto2json exited. Total execute time is {pinvokewatch.Elapsed}.", "O
 string pre_license = File.ReadAllText("pre_license.txt");
 
 Log.Info($"参数解析完成。结果将会生成在 'regen-res' 文件夹中。");
+try { Directory.Delete("regen-res", true); } catch {  }
 
 var protojsons = Directory.EnumerateFiles("./Proto2json_Output");
 Directory.CreateDirectory("regen-res");
@@ -120,12 +121,16 @@ Parallel.ForEach(protojsons, path =>
         BasicCodeWriter fi = PreGenerate($"{message.messageName}.proto");
         SortedSet<string> imports = new();
         RegenOutputMessage.OutputMessage(ref fi, ref imports, message);
-        fi.WriteLine();
-        foreach (var importfile in imports)
+        var external_imports = from importfile in imports
+                               where !message.messageFields.Any(field => field.messageName == importfile)
+                               where !message.enumFields.Any(field => field.enumName == importfile)
+                               orderby importfile
+                               select importfile;
+        if (external_imports.Any()) fi.WriteLine();
+        foreach (var importfile in external_imports)
         {
             fi.WriteLine($"import \"{importfile}.proto\";");
         }
-        fi.WriteLine();
         fi.Dispose();
     }
     foreach (var enumResult in analyzeResult.enumBodys)
@@ -145,15 +150,16 @@ BasicCodeWriter PreGenerate(string fileName)
     fi.WriteLine();
     fi.WriteLine("syntax = \"proto3\";");
     fi.WriteLine();
-    fi.WriteLine("package MiHomo.Protos; // 占位符，请替换");
+    fi.WriteLine("package miHomo.Protos;");
     fi.WriteLine();
     return fi;
 }
 
-
-
 void CopyDir(string source, string target)
-    => CopyFilesRecursively(Path.GetFullPath(source), Path.GetFullPath(target));
+{
+    Directory.CreateDirectory(target);
+    CopyFilesRecursively(Path.GetFullPath(source), Path.GetFullPath(target));
+}
 
 // .net - Copy the entire contents of a directory in C#
 // https://stackoverflow.com/questions/58744/copy-the-entire-contents-of-a-directory-in-c-sharp

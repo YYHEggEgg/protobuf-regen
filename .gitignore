@@ -3,3 +3,7 @@
 /ProtobufRegen/bin
 /ProtobufRegen/obj
 /ProtobufRegen/logs
+/ProtobufRegen/GenProtos
+/ProtobufRegen/Proto2json_Output
+/ProtobufRegen/regen-res
+/ProtobufRegen/regen-res-compiled

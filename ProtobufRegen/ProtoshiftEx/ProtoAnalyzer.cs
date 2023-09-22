@@ -252,6 +252,7 @@ namespace ProtobufRegen
                 var commonResult = new CommonResult();
                 commonResult.fieldType = (string)mb["Type"];
                 commonResult.fieldName = (string)mb["FieldName"];
+                commonResult.fieldNumber = (int)mb["FieldNumber"];
 
                 commonResult.isImportType = !nativeTypes.Contains(commonResult.fieldType);
                 return commonResult;
