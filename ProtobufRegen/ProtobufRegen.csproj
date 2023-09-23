@@ -19,6 +19,9 @@
     <Compile Remove="ProtoFieldNameAnalyze/**" />
     <Compile Remove="Proto2json_Output/**" />
     <Compile Remove="proto2json/**" />
+    <Compile Remove="GenProtos/**" />
+    <Compile Remove="regen-res/**" />
+    <Compile Remove="regen-res-compiled/**" />
   </ItemGroup>
 
 </Project>

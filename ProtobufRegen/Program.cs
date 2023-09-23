@@ -26,6 +26,9 @@ Log.Info($"请将所需的前缀置于 pre_license.txt.");
 Log.Info($"请输入 protobuf 路径：");
 string path = Console.ReadLine();
 
+Log.Info("请输入输出存放路径（其内容将被完全覆盖）：");
+string outputpath = Console.ReadLine();
+
 Log.Info($"复制文件到 ./GenProtos ...");
 try { Directory.Delete("./GenProtos", true); } catch {  }
 CopyDir(path, "./GenProtos");
@@ -108,20 +111,26 @@ Log.Info($"proto2json exited. Total execute time is {pinvokewatch.Elapsed}.", "O
 
 string pre_license = File.ReadAllText("pre_license.txt");
 
-Log.Info($"参数解析完成。结果将会生成在 'regen-res' 文件夹中。");
-try { Directory.Delete("regen-res", true); } catch {  }
+Log.Info($"参数解析完成。结果将会生成在 '{outputpath}' 文件夹中。");
+try { Directory.Delete(outputpath, true); } catch {  }
 
 var protojsons = Directory.EnumerateFiles("./Proto2json_Output");
-Directory.CreateDirectory("regen-res");
+Directory.CreateDirectory(outputpath);
+ConcurrentDictionary<string, int> cmdidlist = new();
 Parallel.ForEach(protojsons, path =>
 {
     ProtoJsonResult analyzeResult = JsonAnalyzer.AnalyzeProtoJson(File.ReadAllText(path));
     foreach (var message in analyzeResult.messageBodys)
     {
-        BasicCodeWriter fi = PreGenerate($"{message.messageName}.proto");
+        BasicCodeWriter fi = PreGenerate(outputpath, $"{message.messageName}.proto");
         SortedSet<string> imports = new();
         RegenOutputMessage.OutputMessage(ref fi, ref imports, message);
-        var external_imports = from importfile in imports
+        var external_imports = from importorigin in imports
+                               let nestedIdentifier = importorigin.IndexOf('.')
+                               let importfile = (nestedIdentifier < 0) 
+                                   ? importorigin 
+                                   : importorigin.Substring(0, nestedIdentifier)
+                               where importfile != message.messageName
                                where !message.messageFields.Any(field => field.messageName == importfile)
                                where !message.enumFields.Any(field => field.enumName == importfile)
                                orderby importfile
@@ -132,20 +141,32 @@ Parallel.ForEach(protojsons, path =>
             fi.WriteLine($"import \"{importfile}.proto\";");
         }
         fi.Dispose();
+        var cmdidenum = message.enumFields.Find(enumResult => enumResult.enumName == "CmdId");
+        if (cmdidenum != null) 
+        {
+            var cmdid_tuple = cmdidenum.enumNodes.Find(enumNodeTuple => enumNodeTuple.name == "CMD_ID");
+            if (cmdid_tuple.name == "CMD_ID") cmdidlist.TryAdd(message.messageName, cmdid_tuple.number);
+        }
     }
     foreach (var enumResult in analyzeResult.enumBodys)
     {
-        BasicCodeWriter fi = PreGenerate($"{enumResult.enumName}.proto");
+        BasicCodeWriter fi = PreGenerate(outputpath, $"{enumResult.enumName}.proto");
         RegenOutputEnum.OutputEnum(ref fi, enumResult);
         fi.Dispose();
     }
 });
 
-Log.Info($"生成成功！按 Enter 退出。");
+Log.Info($"protobuf 解析生成完毕。正在导出 CMD_ID 至 cmdid.csv...");
+var lines = from pair in cmdidlist
+            orderby pair.Key
+            select $"{pair.Key},{pair.Value}";
+File.WriteAllLines(Path.Combine(outputpath, "cmdid.csv"), lines);
 
-BasicCodeWriter PreGenerate(string fileName)
+Log.Info($"生成成功！");
+
+BasicCodeWriter PreGenerate(string basedir, string fileName)
 {
-    BasicCodeWriter fi = new($"regen-res/{fileName}");
+    BasicCodeWriter fi = new(Path.Combine(basedir, fileName));
     fi.WriteLine(pre_license);
     fi.WriteLine();
     fi.WriteLine("syntax = \"proto3\";");

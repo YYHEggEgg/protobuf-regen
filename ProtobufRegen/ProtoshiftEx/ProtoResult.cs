@@ -217,11 +217,16 @@ namespace ProtobufRegen
     {
         public string enumName { get; set; } = "";
         public List<(string name, int number)> enumNodes { get; set; } = new();
+        public List<(string name, string constant)> enumOptions { get; set; } = new();
 
         public override string ToString()
         {
             string result = "";
             result += $"Enum: {enumName}";
+            foreach (var tuple in enumOptions)
+            {
+                result += $"\nOption: {tuple.name} = {tuple.constant}";
+            }
             foreach (var tuple in enumNodes)
             {
                 result += $"\nField Name: {tuple.name} = {tuple.number}";
@@ -233,10 +238,14 @@ namespace ProtobufRegen
         {
             if (!single_line_output) return ToString();
             string result = "";
-            result += $"Enum: {enumName}; Field Names: ";
+            result += $"Enum: {enumName}; ";
+            foreach (var tuple in enumOptions)
+            {
+                result += $"Option: {tuple.name} = {tuple.constant}; ";
+            }
             foreach (var tuple in enumNodes)
             {
-                result += $"{tuple.name}; ";
+                result += $"Node: {tuple.name}; ";
             }
             return result;
         }
@@ -287,6 +296,19 @@ namespace ProtobufRegen
             public override int GetHashCode([DisallowNull] EnumResult obj)
             {
                 return obj.enumName.GetHashCode();
+            }
+        }
+
+        public class EnumNodeNumberEqualityComparer : EqualityComparer<(string name, int number)>
+        {
+            public override bool Equals((string name, int number) x, (string name, int number) y)
+            {
+                return x.number.Equals(y.number);
+            }
+
+            public override int GetHashCode([DisallowNull] (string name, int number) obj)
+            {
+                return obj.number;
             }
         }
         #endregion
