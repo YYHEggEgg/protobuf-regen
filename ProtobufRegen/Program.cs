@@ -24,6 +24,9 @@ StartupWorkingDirChanger.ChangeToDotNetRunPath(new LoggerConfig(
 Log.Info($"请将所需的前缀置于 pre_license.txt.");
 
 Log.Info($"请输入 protobuf 路径：");
+#if FORBID_ENUM_CMDID
+Log.Warn($"本次生成将剥离 Proto/CmdId 枚举；可在 .csproj 中取消 FORBID_ENUM_CMDID 并重新生成来取消。");
+#endif
 string path = Console.ReadLine();
 
 Log.Info("请输入输出存放路径（其内容将被完全覆盖）：");

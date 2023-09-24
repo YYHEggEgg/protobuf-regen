@@ -7,6 +7,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>$(DefineConstants);FORBID_ENUM_CMDID</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>$(DefineConstants);FORBID_ENUM_CMDID</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="EggEgg.CSharp-Logger" Version="3.8.59-beta" />
     <PackageReference Include="Google.Protobuf" Version="3.24.3" />

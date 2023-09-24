@@ -44,8 +44,11 @@ namespace ProtobufRegen.RegenOutput
             }
             
             var enumFields = from enumField in messageResult.enumFields
-                              orderby enumField.enumName
-                              select enumField;
+#if FORBID_ENUM_CMDID
+                             where enumField.enumName.ToLower() != "cmdid"
+#endif
+                             orderby enumField.enumName
+                             select enumField;
             if (enumFields.Any())
             {
                 if (qiangpozhen_fix_firstline) fi.WriteLine();
