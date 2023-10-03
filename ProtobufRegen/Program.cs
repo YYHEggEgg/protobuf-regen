@@ -27,6 +27,9 @@ Log.Info($"请输入 protobuf 路径：");
 #if FORBID_ENUM_CMDID
 Log.Warn($"本次生成将剥离 Proto/CmdId 枚举；可在 .csproj 中取消 FORBID_ENUM_CMDID 并重新生成来取消。");
 #endif
+#if ENABLE_ENUM_FIELDNAME_MIDDLEWARE
+Log.Warn($"本次生成将对枚举字段名作标准化处理，但可能导致问题（如 GCG 无法使用）。如果确认您的 proto 不来自于 GIO 或其不存在问题，可在 .csproj 中取消 ENABLE_ENUM_FIELDNAME_MIDDLEWARE 并重新生成来取消。");
+#endif
 string path = Console.ReadLine();
 
 Log.Info("请输入输出存放路径（其内容将被完全覆盖）：");
@@ -163,7 +166,7 @@ Log.Info($"protobuf 解析生成完毕。正在导出 CMD_ID 至 cmdid.csv...");
 var lines = from pair in cmdidlist
             orderby pair.Key
             select $"{pair.Key},{pair.Value}";
-File.WriteAllLines(Path.Combine(outputpath, "cmdid.csv"), lines);
+File.WriteAllLines(Path.Combine(outputpath, "../cmdid.csv"), lines);
 
 Log.Info($"生成成功！");
 

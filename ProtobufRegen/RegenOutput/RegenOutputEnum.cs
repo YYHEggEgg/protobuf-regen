@@ -1,6 +1,6 @@
 namespace ProtobufRegen.RegenOutput
 {
-    static class RegenOutputEnum
+    static partial class RegenOutputEnum
     {
         public static void OutputEnum(ref BasicCodeWriter fi, EnumResult enumResult)
         {
@@ -24,13 +24,13 @@ namespace ProtobufRegen.RegenOutput
             if (non_duplicate_nodes_count < non_positive_nodes.Count() + positive_nodes.Count())
                 fi.WriteLine($"option allow_alias = true;");
 
-            foreach (var tuple in non_positive_nodes)
+            foreach (var tuple in non_positive_nodes.Concat(positive_nodes))
             {
+#if ENABLE_ENUM_FIELDNAME_MIDDLEWARE
+                fi.WriteLine($"{HandlePrefixMiddleware(enumResult.enumName, tuple.name)} = {tuple.number};");
+#else
                 fi.WriteLine($"{tuple.name} = {tuple.number};");
-            }
-            foreach (var tuple in positive_nodes)
-            {
-                fi.WriteLine($"{tuple.name} = {tuple.number};");
+#endif
             }
             fi.ExitCodeRegion();
         }

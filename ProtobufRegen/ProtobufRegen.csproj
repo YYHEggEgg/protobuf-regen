@@ -8,15 +8,15 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>$(DefineConstants);FORBID_ENUM_CMDID</DefineConstants>
+    <DefineConstants>$(DefineConstants);FORBID_ENUM_CMDID;ENABLE_ENUM_FIELDNAME_MIDDLEWARE_DISABLED</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DefineConstants>$(DefineConstants);FORBID_ENUM_CMDID</DefineConstants>
+    <DefineConstants>$(DefineConstants);FORBID_ENUM_CMDID;ENABLE_ENUM_FIELDNAME_MIDDLEWARE_DISABLED</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EggEgg.CSharp-Logger" Version="3.8.59-beta" />
+    <PackageReference Include="EggEgg.CSharp-Logger" Version="4.0.0" />
     <PackageReference Include="Google.Protobuf" Version="3.24.3" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
