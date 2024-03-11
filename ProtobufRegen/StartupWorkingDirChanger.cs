@@ -5,7 +5,7 @@ namespace ProtobufRegen
     internal static class StartupWorkingDirChanger
     {
         public const string? Required_file = "./ProtobufRegen.csproj";
-        public const string? Required_directory = "./proto2json";
+        public const string? Required_directory = null;
 
         public const string Terminating_Note = "Can't find source code path. Please run this program with dotnet run. \n" +
             "***********WARNING**********\n" +
