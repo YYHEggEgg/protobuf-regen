@@ -1,0 +1,10 @@
+please_set_pre_license=Please set the required prefix in pre_license.txt.
+please_type_protobuf_path=Please enter the protobuf path:
+enabled_forbid_enum_cmdid_notice=This generation will strip the Proto/CmdId enums; you can cancel FORBID_ENUM_CMDID in .csproj and regenerate to undo.
+enabled_enum_fieldname_standardlize_notice=This generation will standardize enum field names, which may cause issues (e.g., GCG cannot use). If you confirm your proto does not originate from GIO or there are no issues, you can cancel ENABLE_ENUM_FIELDNAME_MIDDLEWARE in .csproj and regenerate to undo.
+please_give_output_path=Please enter the output path (its contents will be completely overwritten):
+invoking_proto2json=Starting go-proto2json invocation, please wait...
+proto2json_exited_elapsed_{0}=proto2json has exited. Execution time {0}.
+para_resolved_generating_to_{0}=Parameter resolution complete. Results will be generated in the '{0}' folder.
+exporting_cmdid=Protobuf parsing complete. Exporting CMD_ID to cmdid.csv...
+gen_succ=Successfully generated!

@@ -6,9 +6,9 @@ namespace ProtobufRegen.Proto2json;
 public class RegenOptions
 {
     [Value(0, Required = true, HelpText = "The proto regen path")]
-    public string ProtoPath { get; set; }
+    public required string ProtoPath { get; set; }
     [Option('o', "output", Required = true, HelpText = "The result output path")]
-    public string OutputPath { get; set; }
+    public required string OutputPath { get; set; }
 }
 
 internal static class Program

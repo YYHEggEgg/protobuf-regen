@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtobufRegen", "ProtobufRegen\ProtobufRegen.csproj", "{1B5FC1F1-409B-4726-A092-F6E5F31B09BF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proto2jsonGen", "Proto2jsonGen\Proto2jsonGen.csproj", "{A98753A0-7CE0-44E9-9277-2AE9C8490F52}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B5FC1F1-409B-4726-A092-F6E5F31B09BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B5FC1F1-409B-4726-A092-F6E5F31B09BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B5FC1F1-409B-4726-A092-F6E5F31B09BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B5FC1F1-409B-4726-A092-F6E5F31B09BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A98753A0-7CE0-44E9-9277-2AE9C8490F52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A98753A0-7CE0-44E9-9277-2AE9C8490F52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A98753A0-7CE0-44E9-9277-2AE9C8490F52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A98753A0-7CE0-44E9-9277-2AE9C8490F52}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {124224B0-BAFA-4DE1-AE2B-40DC235CAAD1}
+	EndGlobalSection
+EndGlobal

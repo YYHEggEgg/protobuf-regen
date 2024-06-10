@@ -1,0 +1,10 @@
+please_set_pre_license=请将所需的前缀置于 pre_license.txt.
+please_type_protobuf_path=请输入 protobuf 路径：
+enabled_forbid_enum_cmdid_notice=本次生成将剥离 Proto/CmdId 枚举；可在 .csproj 中取消 FORBID_ENUM_CMDID 并重新生成来取消。
+enabled_enum_fieldname_standardlize_notice=本次生成将对枚举字段名作标准化处理，但可能导致问题（如 GCG 无法使用）。如果确认您的 proto 不来自于 GIO 或其不存在问题，可在 .csproj 中取消 ENABLE_ENUM_FIELDNAME_MIDDLEWARE 并重新生成来取消。
+please_give_output_path=请输入输出存放路径（其内容将被完全覆盖）：
+invoking_proto2json=开始调用 go-proto2json，请耐心等待...
+proto2json_exited_elapsed_{0}=proto2json 已退出。执行花费时间 {0}.
+para_resolved_generating_to_{0}=参数解析完成。结果将会生成在 '{0}' 文件夹中。
+exporting_cmdid=protobuf 解析生成完毕。正在导出 CMD_ID 至 cmdid.csv...
+gen_succ=生成成功！

@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
-    <PackageReference Include="EggEgg.CSharp-ProtoParser" Version="1.1.0-beta50" />
+    <PackageReference Include="EggEgg.CSharp-ProtoParser" Version="1.1.0" />
   </ItemGroup>
 
 </Project>
