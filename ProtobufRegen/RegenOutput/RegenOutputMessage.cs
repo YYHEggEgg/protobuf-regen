@@ -11,7 +11,11 @@ namespace ProtobufRegen.RegenOutput
             fi.EnterCodeRegion();
             bool qiangpozhen_fix_firstline = false;
             var commonFields = from commonField in messageResult.CommonFields
+#if FIELD_ORDERBY_NAME
                                orderby commonField.FieldName
+#elif FIELD_ORDERBY_NUMBER
+                               orderby commonField.FieldNumber
+#endif
                                select commonField;
             if (commonFields.Any()) qiangpozhen_fix_firstline = true;
             foreach (var commonField in commonFields)
@@ -20,7 +24,11 @@ namespace ProtobufRegen.RegenOutput
             }
             
             var mapFields = from mapField in messageResult.MapFields
+#if FIELD_ORDERBY_NAME
                             orderby mapField.FieldName
+#elif FIELD_ORDERBY_NUMBER
+                            orderby mapField.FieldNumber
+#endif
                             select mapField;
             if (mapFields.Any()) 
             {
@@ -33,7 +41,9 @@ namespace ProtobufRegen.RegenOutput
             }
             
             var oneofFields = from oneofField in messageResult.OneofFields
+#if FIELD_ORDERBY_NAME
                               orderby oneofField.OneofEntryName
+#endif
                               select oneofField;
             if (oneofFields.Any()) 
             {

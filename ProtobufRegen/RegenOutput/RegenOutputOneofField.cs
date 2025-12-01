@@ -10,7 +10,11 @@ namespace ProtobufRegen.RegenOutput
             fi.WriteLine($"oneof {oneofResult.OneofEntryName}");
             fi.EnterCodeRegion();
             var commonFields = from commonField in oneofResult.OneofInnerFields
+#if FIELD_ORDERBY_NAME
                                orderby commonField.FieldName
+#elif FIELD_ORDERBY_NUMBER
+                               orderby commonField.FieldNumber
+#endif
                                select commonField;
             foreach (var commonField in commonFields)
             {
