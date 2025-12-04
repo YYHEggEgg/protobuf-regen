@@ -1,6 +1,9 @@
 /ProtobufRegen/regen-res
 /ProtobufRegen/regen-res-compiled
 /mihomo-protos
+cmdid.csv
+cmdid.ex.csv
+*.proto
 
 # -------------------------
 

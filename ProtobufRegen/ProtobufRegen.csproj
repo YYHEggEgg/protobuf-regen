@@ -2,22 +2,23 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RollForward>Major</RollForward>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>$(DefineConstants);FORBID_ENUM_CMDID_DISABLED;ENABLE_ENUM_FIELDNAME_MIDDLEWARE_DISABLED;FIELD_ORDERBY_NAME_DISABLED;FIELD_ORDERBY_NUMBER</DefineConstants>
+    <DefineConstants>$(DefineConstants);FORBID_ENUM_CMDID_DISABLED;ENABLE_ENUM_FIELDNAME_MIDDLEWARE_DISABLED;FIELD_ORDERBY_NAME_DISABLED;FIELD_ORDERBY_NUMBER;GENERATE_SINGLE_FILE</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DefineConstants>$(DefineConstants);FORBID_ENUM_CMDID_DISABLED;ENABLE_ENUM_FIELDNAME_MIDDLEWARE_DISABLED;FIELD_ORDERBY_NAME_DISABLED;FIELD_ORDERBY_NUMBER</DefineConstants>
+    <DefineConstants>$(DefineConstants);FORBID_ENUM_CMDID_DISABLED;ENABLE_ENUM_FIELDNAME_MIDDLEWARE_DISABLED;FIELD_ORDERBY_NAME_DISABLED;FIELD_ORDERBY_NUMBER;GENERATE_SINGLE_FILE</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EggEgg.CSharp-Logger" Version="4.0.2" />
+    <PackageReference Include="CsvHelper" Version="33.1.0" />
+    <PackageReference Include="EggEgg.CSharp-Logger" Version="6.0.0" />
     <PackageReference Include="EggEgg.CSharp-ProtoParser" Version="1.1.0" />
     <PackageReference Include="Google.Protobuf" Version="3.24.3" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.7.0" />
