@@ -38,7 +38,7 @@ Log.Warn(localizer["enabled_forbid_enum_cmdid_notice"]);
 Log.Warn(localizer["enabled_enum_fieldname_standardlize_notice"]);
 #endif
 Log.Info(localizer["please_type_protobuf_path"]);
-string path = Console.ReadLine();
+string path = Console.ReadLine()!;
 
 #if GENERATE_SINGLE_FILE
 Log.Info(localizer["please_give_output_file"]);
@@ -139,8 +139,8 @@ var lines = from rpc in enetRpcs
 File.WriteAllLines(Path.Combine(Directory.GetParent(outputpath).FullName, "cmdid.csv"), lines);
 using StreamWriter writer = new(Path.Combine(Directory.GetParent(outputpath).FullName, "cmdid.ex.csv"));
 #else
-File.WriteAllLines(Path.Combine(outputPath, "cmdid.csv"), lines);
-using StreamWriter writer = new(Path.Combine(outputPath, "cmdid.ex.csv"));
+File.WriteAllLines(Path.Combine(outputpath, "cmdid.csv"), lines);
+using StreamWriter writer = new(Path.Combine(outputpath, "cmdid.ex.csv"));
 #endif
 using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
 csv.WriteRecords(enetRpcs.OrderBy(x => x.MessageName));
