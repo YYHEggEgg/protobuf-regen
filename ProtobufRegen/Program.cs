@@ -45,7 +45,7 @@ Log.Info(localizer["please_give_output_file"]);
 #else
 Log.Info(localizer["please_give_output_path"]);
 #endif
-string outputpath = Console.ReadLine();
+string outputpath = Console.ReadLine()!;
 
 #region Invoke proto2json
 Log.Info(localizer["invoking_proto2json"], "Go-Proto2json");
@@ -168,6 +168,6 @@ BasicCodeWriter PreGenerate(string basedir, string fileName)
     return fi;
 }
 
-record EnetRpcAttributes(string MessageName, string CmdId,
-    string EnetChannelId, string EnetIsReliable, bool IsAllowClient,
-    string TargetService);
+record EnetRpcAttributes(string MessageName, string? CmdId,
+    string? EnetChannelId, string? EnetIsReliable, bool IsAllowClient,
+    string? TargetService);

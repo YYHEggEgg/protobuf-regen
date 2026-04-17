@@ -2,7 +2,7 @@ using YYHEggEgg.ProtoParser;
 
 namespace ProtobufRegen.RegenOutput
 {
-    static class RegenOutputEnum
+    static partial class RegenOutputEnum
     {
         public static void OutputEnum(ref BasicCodeWriter fi, EnumResult enumResult)
         {
@@ -29,7 +29,7 @@ namespace ProtobufRegen.RegenOutput
             foreach (var tuple in non_positive_nodes.Concat(positive_nodes))
             {
 #if ENABLE_ENUM_FIELDNAME_MIDDLEWARE
-                fi.WriteLine($"{HandlePrefixMiddleware(enumResult.enumName, tuple.name)} = {tuple.number};");
+                fi.WriteLine($"{HandlePrefixMiddleware(enumResult.EnumName, tuple.name)} = {tuple.number};");
 #else
                 fi.WriteLine($"{tuple.name} = {tuple.number};");
 #endif
